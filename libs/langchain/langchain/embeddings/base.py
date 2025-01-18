@@ -14,6 +14,7 @@ _SUPPORTED_PROVIDERS = {
     "huggingface": "langchain_huggingface",
     "mistralai": "langchain_mistralai",
     "openai": "langchain_openai",
+    "deepseek": "langchain_openai",
 }
 
 
@@ -183,6 +184,10 @@ def init_embeddings(
     _check_pkg(pkg)
 
     if provider == "openai":
+        from langchain_openai import OpenAIEmbeddings
+
+        return OpenAIEmbeddings(model=model_name, **kwargs)
+    elif provider == "deepseek":
         from langchain_openai import OpenAIEmbeddings
 
         return OpenAIEmbeddings(model=model_name, **kwargs)
